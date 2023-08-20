@@ -29,41 +29,7 @@ const logMiddleware = (req,res,next) => {
 }
 // Implementing middleware
 app.use(logMiddleware)
-// Static Route
-app.use("/public",express.static('public'));
 
-// GET / route to serve html
-app.get("/",(req,res)=>{
-  const indexHTML = __dirname + '/views/index.html'
-  res.sendFile(indexHTML);
-});
-
-// Serve JSON on a specific route
-app.get("/json",(req,res)=>{
-  // send caps if MESSAGE_STYLE is available in .env
-  let response;
-  // 
-  if(process.env.MESSAGE_STYLE === "uppercase"){
-    response = "Hello json".toUpperCase();
-  } else {
-    response= "Hello json"
-  }
-  res.json(({"message": response}))
-});
-
-// Create a Time Server
-app.get(
-  "/now",
-  (req, res, next) => {
-    req.time = new Date().toString();
-    next();
-  },
-  (req, res) => {
-    res.send({
-      time: req.time
-    });
-  }
-);
 console.log("Hello World");
 const port = process.env.PORT || 3000;
 bGround.setupBackgroundApp(app, myApp, __dirname).listen(port, () => {
