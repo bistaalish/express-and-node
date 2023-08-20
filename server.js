@@ -51,14 +51,11 @@ app.get("/json",(req,res)=>{
   res.json(({"message": response}))
 });
 
-// Time Server middleware
-const timeMiddleware = (req,res,next) => {
+// Create a Time Server
+app.get("/now",(req,res,next) => {
   req.time = new Date().toString()
   next();
-}
-
-// Create a Time Server
-app.get("/now",timeMiddleware,(req,res)=>{
+},(req,res)=>{
   res.json({time: req.time})
 })
 
