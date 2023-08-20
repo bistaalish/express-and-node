@@ -21,6 +21,8 @@ if (!process.env.DISABLE_XORIGIN) {
   });
 }
 
+// Static Route
+app.use("/public",express.static('public'));
 // GET / route to serve html
 app.get("/",(req,res)=>{
   const indexHTML = __dirname + '/views/index.html'
