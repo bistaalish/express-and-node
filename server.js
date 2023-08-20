@@ -32,7 +32,7 @@ app.get("/",(req,res)=>{
 
 // Serve JSON on a specific route
 app.get("/json",(req,res)=>{
-  res.json(process.env.MESSAGE_STYLE);
+  res.json(JSON.parse(process.env.MESSAGE_STYLE));
 });
 
 console.log("Hello World");
