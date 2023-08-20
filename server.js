@@ -58,7 +58,7 @@ const timeMiddleware = (req, res, next) => {
 };
 
 app.get("/now", timeMiddleware, (req, res) => {
-  res.send({
+  res.json({
     time: req.time
   });
 });
