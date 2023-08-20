@@ -34,6 +34,7 @@ app.get("/",(req,res)=>{
 app.get("/json",(req,res)=>{
   // send caps if MESSAGE_STYLE is available in .env
   let response;
+  // 
   if(process.env.MESSAGE_STYLE === "uppercase"){
     response = "Hello json".toUpperCase();
   } else {
