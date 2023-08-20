@@ -21,6 +21,14 @@ if (!process.env.DISABLE_XORIGIN) {
   });
 }
 
+// log ip function
+const logMiddleware = (req,res,next) => {
+  var string = req.method + " " + req.path + " - " + req.ip;
+  console.log(string)
+  next();
+}
+// Implementing middleware
+app.use(logMiddleware)
 // Static Route
 app.use("/public",express.static('public'));
 
