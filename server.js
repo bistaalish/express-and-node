@@ -21,7 +21,8 @@ if (!process.env.DISABLE_XORIGIN) {
   });
 }
 app.get("/",(req,res)=>{
-  res.send("Hello Express")
+  const indexHTML = __dirname + '/views/index.html'
+  res.sendFile(indexHTML);
 });
 console.log("Hello World");
 const port = process.env.PORT || 3000;
