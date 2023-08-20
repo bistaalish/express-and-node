@@ -20,6 +20,8 @@ if (!process.env.DISABLE_XORIGIN) {
     next();
   });
 }
+
+// GET / route to serve html
 app.get("/",(req,res)=>{
   const indexHTML = __dirname + '/views/index.html'
   res.sendFile(indexHTML);
