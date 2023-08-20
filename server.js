@@ -52,17 +52,18 @@ app.get("/json",(req,res)=>{
 });
 
 // Create a Time Server
-const timeMiddleware = (req, res, next) => {
-  req.time = new Date().toString();
-  next();
-};
-
-app.get("/now", timeMiddleware, (req, res) => {
-  res.json({
-    time: req.time
-  });
-});
-
+app.get(
+  "/now",
+  (req, res, next) => {
+    req.time = new Date().toString();
+    next();
+  },
+  (req, res) => {
+    res.send({
+      time: req.time
+    });
+  }
+);
 console.log("Hello World");
 const port = process.env.PORT || 3000;
 bGround.setupBackgroundApp(app, myApp, __dirname).listen(port, () => {
