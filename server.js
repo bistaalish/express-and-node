@@ -32,7 +32,14 @@ app.get("/",(req,res)=>{
 
 // Serve JSON on a specific route
 app.get("/json",(req,res)=>{
-  res.json(JSON.parse(process.env.MESSAGE_STYLE));
+  // send caps if MESSAGE_STYLE is available in .env
+  let response;
+  if(process.env.MESSAGE_STYLE === "uppercase"){
+    response = "Hello json".toUpperCase();
+  } else {
+    response= "Hello json"
+  }
+  res.json(({"message": response}))
 });
 
 console.log("Hello World");
