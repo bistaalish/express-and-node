@@ -52,12 +52,20 @@ app.get("/json",(req,res)=>{
 });
 
 // Create a Time Server
-app.get("/now",(req,res,next) => {
-  req.time = new Date().toString()
-  next();
-},(req,res)=>{
-  res.json({time: req.time})
-})
+app.get(
+  "/now",
+  (req, res, next) => {
+    // adding a new property to req object
+    // in the middleware function
+    req.time = new Date().toString();
+    next();
+  },
+  (req, res) => {
+    // accessing the newly added property
+    // in the main function
+    res.json({time: req.time});
+  }
+);
 
 console.log("Hello World");
 const port = process.env.PORT || 3000;
