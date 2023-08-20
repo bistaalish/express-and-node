@@ -10,7 +10,7 @@ const app = express();
 
 if (!process.env.DISABLE_XORIGIN) {
   app.use((req, res, next) => {
-    const allowedOrigins = ['https://narrow-plane.gomix.me', 'https://www.freecodecamp.com'];
+    const allowedOrigins = ['https://narrow-plane.gomix.me', 'https://www.freecodecamp.com','*'];
     const origin = req.headers.origin || '*';
     if(!process.env.XORIG_RESTRICT || allowedOrigins.indexOf(origin) > -1){
          console.log(origin);
@@ -23,11 +23,18 @@ if (!process.env.DISABLE_XORIGIN) {
 
 // Static Route
 app.use("/public",express.static('public'));
+
 // GET / route to serve html
 app.get("/",(req,res)=>{
   const indexHTML = __dirname + '/views/index.html'
   res.sendFile(indexHTML);
 });
+
+// Serve JSON on a specific route
+app.get("/json",(req,res)=>{
+  res.json({"message": "Hello json"})
+});
+
 console.log("Hello World");
 const port = process.env.PORT || 3000;
 bGround.setupBackgroundApp(app, myApp, __dirname).listen(port, () => {
